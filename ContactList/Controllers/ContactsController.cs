@@ -73,7 +73,7 @@ namespace ContactList.Controllers
             {
                 return BadRequest("Invalid or missing name");
             }
-            IEnumerable<Person> deleteQuery = from person in People where (person.firstName != null && person.firstName.Equals(nameFilter)) || (person.lastName != null && person.lastName.Equals(nameFilter)) select person;
+            IEnumerable<Person> deleteQuery = from person in People where (person.firstName != null && person.firstName.Contains(nameFilter)) || (person.lastName != null && person.lastName.Contains(nameFilter)) select person;
             return Ok(deleteQuery);
         }
     }
