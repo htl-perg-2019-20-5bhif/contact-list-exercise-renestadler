@@ -32,11 +32,6 @@ namespace ContactList.Controllers
         [HttpPost]
         public virtual IActionResult AddPerson([FromBody]Person body)
         {
-            if (body == null || body.id < 0 ||
-                body.email == null || body.email.Length == 0)
-            {
-                return BadRequest("Invalid input (e.g. required field missing or empty)");
-            }
             IEnumerable<Person> deleteQuery = from person in People where person.id == body.id select person;
             if (deleteQuery.Count() != 0)
             {
